@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <h1>{{ 123456 }}</h1>
+    <button @click="change">change</button>
+</div>
+<script>
+
+    const state = Vue.observable({ count: 0 });
+    const mutation = {
+        
+    }
+
+    const vm = new Vue({
+        el: "#app",
+        data() {
+            return {
+                msg: "123456"
+            }
+        }
+    })
+</script>
+</body>
+</html>

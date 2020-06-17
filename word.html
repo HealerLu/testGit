@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            background-color: gray;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #container {
+            width: 800px;
+            height: 500px;
+            background-color: #ffffff;
+            border-radius: 20px;
+        }
+        .words {
+            width: 100%;
+            text-align: center;
+        }
+        .words .letter {
+            border-bottom: 2px solid blue;
+            width: 20px;
+            height: 30px;
+            display: inline-block;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div class="words">
+    </div>
+</div>
+<script>
+    const words = ['hello', 'word', 'apple', 'orange']
+    const selectWord = words[Math.floor(Math.random() * words.length)];
+    const trustWords = [];
+    const wrongWords = [];
+    console.log(selectWord)
+    window.addEventListener("keydown", (e) => {
+        if(e.keyCode >= 65 && e.keyCode <= 90) {
+            const currentWord = e.key;
+            trustWords.push(currentWord)
+            console.log(trustWords)
+
+            showLetters();
+        }
+    })
+
+
+    function showLetters() {
+        document.querySelector(".words").innerHTML = `
+            ${ selectWord.split('').map( letter => ` <span class="letter">${  trustWords.includes(letter)? letter: "" }</span> ` ).join('') }
+        `
+    }
+    showLetters()
+
+
+
+
+
+</script>
+</body>
+</html>

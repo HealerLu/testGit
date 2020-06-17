@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    <p @click="changeMsg()">{{ msg }}</p>
+    <p>{{ reverseMsg }}</p>
+    <test class="baz"></test>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, perspiciatis.</p>
+    <ul>
+        <li>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo impedit, quia. Assumenda cupiditate debitis dignissimos id, illum incidunt iste laudantium molestiae, neque nostrum nulla optio quasi, qui repellendus reprehenderit saepe.
+        </li>
+    </ul>
+    <test v-for="item in blog" :title="item.title" :key="item.id"></test>
+</div>
+<script>
+    Vue.component("test", {
+        data() {
+          return {
+              count: 1
+          }
+        },
+        props: {
+            title: {
+                type: Number,
+                default: 123
+            }
+        },
+        template: `<div>
+            <h1 @click="count ++ " class="foo">{{ count }}</h1>
+            <h2>{{ title }}</h2>
+        </div>`,
+    })
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            msg: "12345",
+            test: "123",
+            blog: [
+                { "id": 1, "title": 20 },
+                { "id": 2, "title": 30 },
+                { "id": 3, "title": 40 }
+            ]
+        },
+        methods: {
+            changeMsg(e) {
+                console.log(e)
+                this.msg += 1
+            },
+        },
+        //计算属性
+        computed: {
+            reverseMsg() {
+                return this.msg.split("").reverse().join("")
+            }
+        },
+        watch: {
+            msg: function (newVal, oldVal) {
+                console.log(`${ newVal } + ${ oldVal }`)
+            }
+        }
+    });
+
+</script>
+
+
+
+
+<!--<script>
+    (function() {
+        var mta = document.createElement("script");
+        mta.src = "https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(mta, s);
+    })();
+</script>-->
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <button @click="handleEmit">{{ text }}</button>
+</div>
+<!-------------------------
+
+
+
+--------------------------->
+<script>
+    new Vue({
+        el: "#app",
+        data() {
+            return {
+                text: "点击按钮"
+            }
+        },
+        created() {
+            this.$on("ownType", this.handleEvents)
+        },
+        methods: {
+            handleEvents(e) {
+                console.log(`事件触发了，${e}`)
+            },
+
+            handleEmit() {
+                this.$emit("ownType", "传入的值")
+            }
+        }
+    })
+</script>
+</body>
+</html>
